@@ -12,7 +12,6 @@
 import getopt
 from dbus import SystemBus,Interface
 from sys import exit,argv,stdout
-from re import split
 from time import strftime,sleep
 
 
