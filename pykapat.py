@@ -17,6 +17,8 @@ from time import strftime,sleep
 
 def bekleme_goster(bekleme_suresi):
     try:
+        bekleme_suresi -= 1
+
         while bekleme_suresi > 0:
             print '\r', '\033[;1mBilgisayarınız \033[1;33;44m',bekleme_suresi / 3600, 'saat', \
                     bekleme_suresi % 3600 / 60, 'dakika', bekleme_suresi % 60, 'saniye', \
@@ -65,7 +67,7 @@ class PyKapat:
             elif o in ("-h", "--help"):
                 kapat.kullanim()
             else:
-                assert False, "Geçersiz girdi"
+                assert False, "Geçersiz değişken"
 
 
     def dakika_sonra(self, dakika):
@@ -86,11 +88,11 @@ class PyKapat:
     def su_saatte(self, saat):
         self.saat = saat
         if len(self.saat) > 5:
-            print "\033[1;1mÇok fazla girdi:\033[1;33m %s\033[0m" % (self.saat)
+            print "\033[1;1mÇok fazla değişken:\033[1;33m %s\033[0m" % (self.saat)
             exit(1)
 
         elif len(self.saat) < 4:
-            print "\033[1;1meksik girdi:\033[1;33m %s\033[0m" % (self.saat)
+            print "\033[1;1meksik değişken:\033[1;33m %s\033[0m" % (self.saat)
             exit(1)
 
         saat_ayir = self.saat.split(":", 1)
@@ -139,7 +141,7 @@ class PyKapat:
             simdi_kapat('Stop')
 
     def surum_bilgisi(self):
-        print " PyKapat v0.2.0"
+        print "PyKapat v2.0"
 
     def kullanim(self):
         print """
