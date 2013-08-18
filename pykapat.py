@@ -27,7 +27,6 @@
 
 import getopt, sys
 from dbus import SystemBus,Interface
-from sys import exit,argv,stdout
 from time import strftime,sleep
 
 
@@ -44,7 +43,7 @@ def bekleme_goster(bekleme_suresi):
             sleep(1)
     except KeyboardInterrupt:
         print("\n\033[1;41mKullanıcı tarafından işlem iptal edildi !!!\033[0m")
-        exit(1)
+        sys.exit(1)
 
 def simdi_kapat(istek):
     bus = SystemBus()
@@ -73,7 +72,7 @@ class PyKapat:
                         ["help", "version", "kapat", "yeniden-baslat", "saat=", "dakika="])
         except getopt.GetoptError as err:
             print("pykapat: %s" % (str(err)))
-            exit(2)
+            sys.exit(2)
 
         for o, a in opts:
             if o in ("-k", "--kapat"):
@@ -97,11 +96,11 @@ class PyKapat:
             self.dakika = int(dakika)
         except ValueError:
             print("\033[1;41mDakika olarak sayısal bir değer giriniz.\033[0m")
-            exit(1)
+            sys.exit(1)
 
         if int(self.dakika) < 0:
             print("\033[1;41mGirilen dakika 0'dan küçük olamaz.\033[0m")
-            exit(1)
+            sys.exit(1)
 
         self.dakika_bekleme_suresi = int(self.dakika) * 60
         bekleme_goster(self.dakika_bekleme_suresi)
@@ -117,27 +116,27 @@ class PyKapat:
 
         except ValueError:
             print("\033[1;41mSaat olarak sayısal bir değer giriniz.\033[0m")
-            exit(1)
+            sys.exit(1)
 
         except IndexError:
             print("\033[1;41mSaat ve dakika arasında ':' olmalı.\033[0m")
-            exit(1)
+            sys.exit(1)
 
         if int(saat_ayir[0]) > 23:
             print("\033[1;41mGirilen saat en fazla 23 olabilir.\033[0m")
-            exit(1)
+            sys.exit(1)
 
         elif int(saat_ayir[0]) < 0:
             print("\033[1;41mGirilen saat 0'dan küçük olamaz.\033[0m")
-            exit(1)
+            sys.exit(1)
 
         if int(saat_ayir[1]) > 59:
             print("\033[1;41mGirilen dakika en fazla 59 olabilir.\033[0m")
-            exit(1)
+            sys.exit(1)
 
         elif int(saat_ayir[1]) < 0:
             print("\033[1;41mGirilen dakika 0'dan küçük olamaz.\033[0m")
-            exit(1)
+            sys.exit(1)
 
 
         self.girilen_saat_saniye = int(saat_ayir[0]) * 3600 + int(saat_ayir[1]) * 60
